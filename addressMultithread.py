@@ -111,7 +111,6 @@ class CoinDataLoader:
                 self._size += 1
                 chunk.append(raw)
                 if len(chunk) >= blockSize:
-
                     # send the chunk to a funtion that operates on all of the data and returns a string
                     # write that block to the text file
                     outfile.write(self.generateAddressText(chunk))

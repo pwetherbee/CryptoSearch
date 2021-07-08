@@ -1,11 +1,14 @@
+import os
+from dotenv import load_dotenv
 from google.cloud import bigquery
+load_dotenv()
+path = os.getenv("KEY_PATH")
 
 projectID = "geobot-312818"
 datasetID = "btcAddresses"
 
 bq_client = bigquery.Client(project="geobot-312818")
-bq_client.from_service_account_json(
-    r"C:\Users\Patrick Wetherbee\Documents\GitHub\Hash Slinging Slasher\geobot-312818-35fbe1b744ae.json")
+bq_client.from_service_account_json(path)
 
 
 default_schema = [
@@ -15,7 +18,7 @@ default_schema = [
 
 
 matchTables = {'eth': 'bigquery-public-data.crypto_ethereum.balances',
-               'btc': 'geobot-312818.btcBalanceList.btcBalances'}
+               'btc': os.getenv("BTC_TABLE_PATH")}
 
 
 def getMatchTable(coin):

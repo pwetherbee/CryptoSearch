@@ -1,15 +1,16 @@
 import os
+from dotenv import load_dotenv
 from google.api_core.exceptions import GoogleAPICallError, GoogleAPIError
 from google.cloud import storage
 
 
 # instantiate client
-# $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Patrick Wetherbee\Documents\GitHub\Hash Slinging Slasher\geobot-312818-35fbe1b744ae.json"
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\Patrick Wetherbee\Documents\GitHub\Hash Slinging Slasher\geobot-312818-35fbe1b744ae.json"
+load_dotenv()
+path = os.getenv("KEY_PATH")
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = path
 
 storage_client = storage.Client()
-# storage_client.from_service_account_json(
-#     r"C:\Users\Patrick Wetherbee\Documents\GitHub\Hash Slinging Slasher\geobot-312818-35fbe1b744ae.json")
 
 
 class GoogleStorage:
@@ -44,13 +45,3 @@ class GoogleStorage:
             return
         except FileNotFoundError as fnf:
             print(f'File not found in path {source_file_name}: {fnf}')
-
-
-# gs = GoogleStorage()
-
-# gs.createBucket('address-files')
-
-# gs.uploadFile('address-files',
-#               'ethAddresses/addrasfessesNU.txt', 'addressesNu.txt')
-
-# print(gs.getBuckets())
