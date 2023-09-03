@@ -1,7 +1,7 @@
 import os
 from config import Config as cf
-from gsInterface import GoogleStorage
-import bigQuery as bq
+# from gsInterface import GoogleStorage
+# import bigQuery as bq
 from addressMultithread import CoinDataLoader
 
 
@@ -25,6 +25,8 @@ if __name__ == '__main__':
 
         # upload to google cloud storage
         print('Uploading file...')
+
+        break
         gs = GoogleStorage()
         gs.uploadFile('address-files', csv_path, name)
         print('Upload success!')

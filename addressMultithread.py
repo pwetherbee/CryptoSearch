@@ -90,8 +90,12 @@ class CoinDataLoader:
             outfile.write('raw,private_key,address\n')
             # iterate up to start index
             print('Seeking start index', self.start)
-            for _ in range(self.start):
-                next(infile)
+            try:
+                for _ in range(self.start):
+                    next(infile)
+            except StopIteration:
+                print("Reached end of file!")
+                return
             print('Reading file and generating private keys and addresses')
             # tqdm.reset()
             for i, line in enumerate(tqdm(infile, total=self.total)):

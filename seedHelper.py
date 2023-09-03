@@ -1,7 +1,7 @@
 import hashlib as hlib
 import sha3
 import binascii
-from cryptotools.BTC import PrivateKey, PublicKey
+# from cryptotools.BTC import PrivateKey, PublicKey
 from ecdsa import SigningKey, SECP256k1
 
 
@@ -49,7 +49,7 @@ class coinHelper:
             return address
         elif self.coin == "btc":
             public = private.get_verifying_key().to_string("uncompressed")
-            public = PublicKey.decode(public)
+            # public = PublicKey.decode(public)
             # P2PKH (1) for legacy, P2SH for new address (3), P2WPKH (bc) for advanced address
             address = public.to_address(address_type)  #
             return address
